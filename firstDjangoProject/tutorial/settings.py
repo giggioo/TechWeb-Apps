@@ -123,3 +123,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Adding this line to test whether the integrated git versioning control works or not
+# Adding another line to test `git diff`
