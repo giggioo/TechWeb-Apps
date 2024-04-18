@@ -11,10 +11,19 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+"""
+Django alla generazione del progetto imposta BASE_DIR in questo modo:
 BASE_DIR = Path(__file__).resolve().parent.parent
+Tuttavia, possiamo notare (alt + cmd) che Path è una classe di pathlib.py introdotta in python 3.4
+Pur avendo una sintassi più orientata agli oggetti, preferisco usare os.path che fornisce funzioni per lavorare con i filesystem indipendentemente dalla piattaforma.   
+"""
+# Utilizzando __file__ andiamo a prendere il percorso del file corrente (settings.py), il metodo abspath lo rende assoluto ed usiamo dirname per salire nella gerarchia due volte,
+# simile a quanto accadeva con ".parent". Capiamo quindi che le due scritture sono equivalenti.
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -69,7 +78,7 @@ ROOT_URLCONF = 'tutorial.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': os.path.join(BASE_DIR, 'templates') ,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -142,7 +151,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+# Elenco delle directory aggiuntive per i file statici
+# La ricerca è ricorsiva nelle sottocartelle, infatti troviamo la sottocartella img nella quale si va a cercare.
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
