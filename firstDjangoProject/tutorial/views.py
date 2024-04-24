@@ -1,7 +1,7 @@
 from django.http import HttpResponse
+from django.shortcuts import render
+
 
 def homepage(request):
-    response="Benvenuto sul sito! \n"
-    response+="Nuove features in arrivo..."
-
-    return HttpResponse(response)
+    ctx = {"title":"Tende Luxo"}
+    return render(request, template_name="home.html", context=ctx)
