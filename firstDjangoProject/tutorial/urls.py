@@ -19,5 +19,7 @@ from .views import homepage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', homepage, name="homepage")
+    path('home/', homepage, name="homepage"),
+    path('/', homepage, name="homepage"),
+    path('elencoparametri/', elenco_parametri, name="elenco_parametri"),
 ]
