@@ -14,12 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from .views import homepage
+from django.urls import path, include
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', homepage, name="homepage"),
-    path('/', homepage, name="homepage"),
-    path('elencoparametri/', elenco_parametri, name="elenco_parametri"),
+    path('home/', views.homepage, name="homepage"),
+    # Questo significa che tutte le volte che viene fatta una richiesta a soci/qualcosa mi vado a riferire al file soci.urls per rispondere.
+    path('soci/', include('soci.urls'))
 ]
