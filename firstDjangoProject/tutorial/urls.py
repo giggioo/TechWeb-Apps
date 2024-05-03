@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import homepage
+from .views import homepage, elenco_parametri, nomeparam, numpd, welcomenome
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', homepage, name="homepage"),
-    path('/', homepage, name="homepage"),
-    path('elencoparametri/', elenco_parametri, name="elenco_parametri"),
+    path('', homepage, name="homepage"),
+    path('elencoparametri/<str:nome>/', welcomenome, name="elenco_parametri"),
+
 ]
