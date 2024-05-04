@@ -20,8 +20,8 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.homepage, name="homepage"),
+    path('', views.homepage, name="homepage"),
     path('elencoparametri/<str:nome>/', views.welcomenome, name="elenco_parametri"),
-    # Questo significa che tutte le volte che viene fatta una richiesta a soci/qualcosa mi vado a riferire al file soci.urls per rispondere.
-    path('soci/', include('soci.urls')),
-    
+    # Questo significa che tutte le volte che viene fatta una richiesta a clienti/qualcosa mi vado a riferire al file clienti.urls per rispondere.
+    path('clienti/', include('clienti.urls')),
 ]
